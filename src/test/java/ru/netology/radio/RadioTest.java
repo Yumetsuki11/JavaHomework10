@@ -9,6 +9,24 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource({
+            "-42, 10",
+            "-1, 10",
+            "0, 10",
+            "1, 1",
+            "4, 4",
+            "9, 9",
+            "10, 10",
+            "11, 11",
+            "42, 42"
+    })
+    void parameterizedConstructorTest(int stationsCount, int expected) {
+        Radio customRadio = new Radio(stationsCount);
+
+        Assertions.assertEquals(expected, customRadio.getStationsCount());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
             "-42, 0",
             "-1, 0",
             "0, 0",
@@ -19,9 +37,10 @@ public class RadioTest {
             "10, 0",
             "42, 0"
     })
-    void setStationTest(byte station, byte expected) {
+    void setStationTest(int station, int expected) {
         radio.setStation(station);
-        Assertions.assertEquals(expected, radio.station);
+
+        Assertions.assertEquals(expected, radio.getStation());
     }
 
     @ParameterizedTest
@@ -31,10 +50,11 @@ public class RadioTest {
             "4, 3",
             "9, 8"
     })
-    void prevStationTest(byte station, byte expected) {
+    void prevStationTest(int station, int expected) {
         radio.setStation(station);
         radio.prevStation();
-        Assertions.assertEquals(expected, radio.station);
+
+        Assertions.assertEquals(expected, radio.getStation());
     }
 
     @ParameterizedTest
@@ -44,10 +64,29 @@ public class RadioTest {
             "8, 9",
             "9, 0"
     })
-    void nextStationTest(byte station, byte expected) {
+    void nextStationTest(int station, int expected) {
         radio.setStation(station);
         radio.nextStation();
-        Assertions.assertEquals(expected, radio.station);
+
+        Assertions.assertEquals(expected, radio.getStation());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "-42, 0",
+            "-1, 0",
+            "0, 0",
+            "1, 1",
+            "42, 42",
+            "99, 99",
+            "100, 100",
+            "101, 0",
+            "1337, 0"
+    })
+    void setVolumeTest(int volume, int expected) {
+        radio.setVolume(volume);
+
+        Assertions.assertEquals(expected, radio.getVolume());
     }
 
     @ParameterizedTest
@@ -55,13 +94,14 @@ public class RadioTest {
             "0, 0",
             "1, 0",
             "4, 3",
-            "9, 8",
-            "10, 9"
+            "99, 98",
+            "100, 99"
     })
-    void minusVolumeTest(byte volume, byte expected) {
-        radio.volume = volume;
+    void minusVolumeTest(int volume, int expected) {
+        radio.setVolume(volume);
         radio.minusVolume();
-        Assertions.assertEquals(expected, radio.volume);
+
+        Assertions.assertEquals(expected, radio.getVolume());
     }
 
     @ParameterizedTest
@@ -69,12 +109,13 @@ public class RadioTest {
             "0, 1",
             "1, 2",
             "4, 5",
-            "9, 10",
-            "10, 10"
+            "99, 100",
+            "100, 100"
     })
-    void plusVolumeTest(byte volume, byte expected) {
-        radio.volume = volume;
+    void plusVolumeTest(int volume, int expected) {
+        radio.setVolume(volume);
         radio.plusVolume();
-        Assertions.assertEquals(expected, radio.volume);
+
+        Assertions.assertEquals(expected, radio.getVolume());
     }
 }

@@ -15,8 +15,20 @@ public class Radio {
         }
     }
 
+    public int getStation() {
+        return station;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public int getStationsCount() {
+        return stationsCount;
+    }
+
     public void setStation(int station) {
-        if (station > -1 & station < stationsCount) {
+        if (station > -1 & station < getStationsCount()) {
             this.station = station;
         } else {
             this.station = 0;
@@ -31,28 +43,16 @@ public class Radio {
         }
     }
 
-    public int getStation() {
-        return station;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public int getStationsCount() {
-        return stationsCount;
-    }
-
     public void prevStation() {
         if (getStation() == 0) {
-            setStation(stationsCount - 1);
+            setStation(getStationsCount() - 1);
         } else {
             setStation(getStation() - 1);
         }
     }
 
     public void nextStation() {
-        if (getStation() == stationsCount - 1) {
+        if (getStation() == getStationsCount() - 1) {
             setStation(0);
         } else {
             setStation(getStation() + 1);

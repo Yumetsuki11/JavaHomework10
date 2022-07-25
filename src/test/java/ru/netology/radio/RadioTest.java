@@ -115,7 +115,7 @@ public class RadioTest {
     void plusVolumeTest(int volume, int expected) {
         radio.setVolume(volume);
         radio.plusVolume();
-        
+
         Assertions.assertEquals(expected, radio.getVolume());
     }
 }

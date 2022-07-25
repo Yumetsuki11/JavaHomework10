@@ -1,30 +1,20 @@
 package ru.netology.radio;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@Getter
 public class Radio {
 
     private int station;
     private int volume;
     private int stationsCount = 10;
 
-    public Radio() {
-    }
-
     public Radio(int stationsCount) {
         if (stationsCount > 0) {
             this.stationsCount = stationsCount;
         }
-    }
-
-    public int getStation() {
-        return station;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public int getStationsCount() {
-        return stationsCount;
     }
 
     public void setStation(int station) {
